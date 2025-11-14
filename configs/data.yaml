@@ -1,0 +1,40 @@
+seed: 42
+lang: zh   # zh 或 en：生成 prompt 的语言
+samples_per_task: 300   # 每大类目标样本数；脚本会在各数据集间均衡抽取
+
+math:
+  datasets:
+    - name: gsm8k
+      split: test
+      max_per_dataset: 200
+    - name: local_math500
+      path: /data/wenhesun/Predictive-Eval/data/math_problems/MATH500_test.json
+      max_per_dataset: 500
+    - name: local_odyssey
+      path: /data/wenhesun/Predictive-Eval/data/math_problems/odyssey.json
+      max_per_dataset: 500
+    - name: local_olympiadbench
+      path: /data/wenhesun/Predictive-Eval/data/math_problems/OlympiadBench_OE_TO_maths_en_COMP.json
+      max_per_dataset: 500
+    - name: local_aime2024
+      path: /data/wenhesun/Predictive-Eval/data/math_problems/AIME_2024.json
+      max_per_dataset: 30
+
+coding:
+  datasets:
+    - name: mbpp
+      split: test   # 若无 test 则自动回退 train
+      max_per_dataset: 200
+    - name: openai_humaneval
+      split: test
+      max_per_dataset: 164
+
+logic:
+  datasets:
+    - name: arc-agi-2             # 或写 arc-agi-community/arc-agi-2，加载器会兼容
+      split: train                # 官方通常叫 train
+      k_fewshots: -1              # -1 表示使用该样本的全部 fewshots；也可设 3/5…
+      max_per_dataset: 300        # 从该数据集中最多采样多少条
+
+output_path: data/probe/probe.jsonl
+length_buckets: [20, 80, 200]   # 题面字符数分桶，用于均衡难度/长度
