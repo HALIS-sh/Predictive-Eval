@@ -34,6 +34,7 @@ RL 训练过程的预测实验：CSV + Behavior + AlphaRL
 
 ### 0.2 项目结构
 
+```text
 project_root/
 ├─ configs/
 │  ├─ data.yaml                # build_probe / learn_task_vocab 等配置
@@ -54,7 +55,7 @@ project_root/
 │  ├─ collect_csv_along_grpo.py
 │  ├─ collect_rl_curves.py
 │  ├─ plot_rl_vs_csv_curves.py
-│  ├─ alpharl_step1_svd_and_rank### 1.py
+│  ├─ alpharl_step1_svd_and_rank1.py
 │  └─ alpharl_step2_predict_u_and_build_model.py
 └─ ...
 
