@@ -82,10 +82,12 @@ project_root/
 	- data/probe/probe.jsonl
 
 示例命令
+```python
 
 python scripts/build_probe.py \
   --config configs/data.yaml
 
+```
 
 ⸻
 
@@ -103,12 +105,13 @@ python scripts/build_probe.py \
 	- data/probe/task_vocab.json（示意）
 
 示例命令
+```python
 
 python scripts/learn_task_vocab.py \
   --probe_path data/probe/probe.jsonl \
   --output_path data/probe/task_vocab.json
 
-
+```
 ⸻
 
 ## 2. 在 probe 上统一推断：NLL & token 标记
@@ -137,6 +140,7 @@ python scripts/learn_task_vocab.py \
  'mean_nll', 'mean_nll_answer_only']
 
 示例命令
+```python
 
 python scripts/run_inference.py \
   --model_path /data/wenhesun/model/Qwen/Qwen### 2.5-### 1.5B-Instruct \
@@ -146,7 +150,7 @@ python scripts/run_inference.py \
   --max_length 2048 \
   --answer_tag "###"
 
-
+```
 ⸻
 
 ## 3. 训练 CSV 权重 + 抽取行为特征
@@ -168,12 +172,14 @@ python scripts/run_inference.py \
 	- data/csv/csv_scores.parquet（形如 [model_name, task, csv_score]）
 
 示例命令
+```python
 
 python scripts/train_csv_weights.py \
   --config configs/csv.yaml \
   --infer_dir data/infer \
   --output_dir data/csv
 
+```
 
 ⸻
 
@@ -194,12 +200,14 @@ python scripts/train_csv_weights.py \
 	- data/behavior/behavior_feats.parquet（按模型聚合后的 4–8 维行为特征）
 
 示例命令
+```python
 
 python scripts/behavior_label_and_train.py \
   --config configs/behavior.yaml \
   --infer_dir data/infer \
   --output_dir data/behavior
 
+```
 
 ⸻
 
@@ -228,6 +236,7 @@ python scripts/behavior_label_and_train.py \
 [step, model_path, task, csv_score, model_name, algo, ...]
 
 示例命令
+```python
 
 python scripts/collect_csv_along_grpo.py \
   --probe_path data/probe/probe.jsonl \
@@ -237,6 +246,7 @@ python scripts/collect_csv_along_grpo.py \
   --output_path data/rl/csv_tracks.parquet \
   --start_step 2000 --end_step 17000 --step_stride 2000
 
+```
 
 ⸻
 
@@ -256,6 +266,7 @@ python scripts/collect_csv_along_grpo.py \
 [step, rl_score, metric_key, model_path, dataset, ...]
 
 示例命令
+```python
 
 python scripts/collect_rl_curves.py \
   --alpharl_root /data/wenhesun/Alpha-RL/Alpha-RL \
@@ -265,6 +276,7 @@ python scripts/collect_rl_curves.py \
   --eval_extra_args "--dataset gsm8k --max_examples 500" \
   --start_step 2000 --end_step 17000 --step_stride 2000
 
+```
 
 ⸻
 
@@ -288,6 +300,7 @@ python scripts/collect_rl_curves.py \
 	- 终端打印 R² / 相关系数等
 
 示例命令
+```python
 
 python scripts/plot_rl_vs_csv_curves.py \
   --rl_curves data/rl/rl_curves.parquet \
@@ -295,7 +308,9 @@ python scripts/plot_rl_vs_csv_curves.py \
   --output_dir data/rl/plots \
   --task math
 
-通过这一步，你可以回答：“在真实 GRPO 轨迹里，CSV 能力轴是否单调/线性地跟 RL 性能相关？”
+```
+
+通过这一步，可以回答：“在真实 GRPO 轨迹里，CSV 能力轴是否单调/线性地跟 RL 性能相关？”
 
 ⸻
 
@@ -336,6 +351,7 @@ python scripts/plot_rl_vs_csv_curves.py \
 	- output_root/alpharl_rank1_eval.parquet
 
 示例命令
+```python
 
 python scripts/alpharl_step1_svd_and_rank### 1.py \
   --alpharl_root /data/wenhesun/Alpha-RL/Alpha-RL \
@@ -350,6 +366,8 @@ python scripts/alpharl_step1_svd_and_rank### 1.py \
   --algo GRPO \
   --task math \
   --base_score 0.30
+
+```
 
 用 alpharl_rank1_eval.parquet 可以画出：真实 RL 曲线 vs Rank-1 曲线，并计算 “rank1 恢复的增益比例”。
 
@@ -386,6 +404,7 @@ python scripts/alpharl_step1_svd_and_rank### 1.py \
 	- output_root/alpharl_predicted_end.parquet
 
 示例命令
+```python
 
 python scripts/alpharl_step2_predict_u_and_build_model.py \
   --alpharl_root /data/wenhesun/Alpha-RL/Alpha-RL \
@@ -403,8 +422,9 @@ python scripts/alpharl_step2_predict_u_and_build_model.py \
   --algo GRPO \
   --task math
 
-跑完之后，alpharl_predicted_end.parquet 会告诉你：
-真实终点得分 vs Alpha-RL 预测终点得分，从而验证 Alpha-RL 在你这条 GRPO 轨迹上的可用性。
+```
+
+alpharl_predicted_end.parquet 会得到：真实终点得分 vs Alpha-RL 预测终点得分，从而验证 Alpha-RL 在这条 GRPO 轨迹上的可用性。
 
 ⸻
 
