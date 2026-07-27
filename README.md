@@ -127,7 +127,7 @@ python scripts/learn_task_vocab.py \
 	- 输出一个 Parquet，作为后续 CSV 与 Behavior 的基础。
 
 输入
-	- 本地 HF 模型目录（如 /data/wenhesun/model/Qwen/Qwen### 2.5-### 1.5B-Instruct）
+	- 本地 HF 模型目录（如 /data/wenhesun/model/Qwen/Qwen2.5-1.5B-Instruct）
 	- probe.jsonl
 
 输出
@@ -143,9 +143,9 @@ python scripts/learn_task_vocab.py \
 ```python
 
 python scripts/run_inference.py \
-  --model_path /data/wenhesun/model/Qwen/Qwen### 2.5-### 1.5B-Instruct \
+  --model_path /data/wenhesun/model/Qwen/Qwen2.5-1.5B-Instruct \
   --probe_path data/probe/probe.jsonl \
-  --output_path data/infer/Qwen### 2.5-### 1.5B-Instruct.probe.parquet \
+  --output_path data/infer/Qwen2.5-1.5B-Instruct.probe.parquet \
   --batch_size 4 \
   --max_length 2048 \
   --answer_tag "###"

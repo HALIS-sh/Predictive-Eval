@@ -7,17 +7,29 @@ math:
     - name: gsm8k
       split: test
       max_per_dataset: 200
+
     - name: local_math500
-      path: /data/wenhesun/Predictive-Eval/data/math_problems/MATH500_test.json
+      path: /data/wenhesun/Alpha-RL/Alpha-RL/data/math/test.jsonl
       max_per_dataset: 500
+
+    - name: local_minerva_math       # 使用 build_probe 里的 load_local_minerva_math
+      path: /data/wenhesun/Alpha-RL/Alpha-RL/data/minerva/test.jsonl
+      max_per_dataset: 500
+
     - name: local_odyssey
       path: /data/wenhesun/Predictive-Eval/data/math_problems/odyssey.json
       max_per_dataset: 500
+
     - name: local_olympiadbench
-      path: /data/wenhesun/Predictive-Eval/data/math_problems/OlympiadBench_OE_TO_maths_en_COMP.json
+      path: /data/wenhesun/Alpha-RL/Alpha-RL/data/olympiadbench/test.jsonl
       max_per_dataset: 500
+
     - name: local_aime2024
-      path: /data/wenhesun/Predictive-Eval/data/math_problems/AIME_2024.json
+      path: /data/wenhesun/Alpha-RL/Alpha-RL/data/aime24/test.jsonl
+      max_per_dataset: 30
+
+    - name: local_aime25             # 新增
+      path: /data/wenhesun/Alpha-RL/Alpha-RL/data/aime25/test.jsonl
       max_per_dataset: 30
 
 coding:

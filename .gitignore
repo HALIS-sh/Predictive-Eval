@@ -1,0 +1,53 @@
+# ===== BACKUP-UPLOAD IGNORE (auto-added 2026-07-27) =====
+# --- secrets: never commit ---
+.env
+.env.*
+*.env
+config/anthropic.yaml
+config/gateway_*.yaml
+config/*_claude_*.yaml
+**/api_config.py
+*secret*
+*credential*
+*.pem
+*.key
+id_rsa*
+# --- model / weight artifacts ---
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.gguf
+*.onnx
+*.h5
+*.model
+# --- experiment outputs / logs ---
+outputs/
+outputs_*/
+output/
+logs/
+log/
+*.log
+wandb/
+runs/
+# --- large data at repo root (anchored; nested source data/ preserved) ---
+/data/
+/datasets/
+/eval_results/
+/training_logs/
+# --- caches / envs ---
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.cache/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+node_modules/
+# --- os / editor junk ---
+.DS_Store
+*.swp
+# ===== END BACKUP-UPLOAD IGNORE =====
